@@ -52,6 +52,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug '907th/vim-auto-save'
+let g:auto_save=1
 Plug 'fatih/vim-go'
 Plug 'souffle-lang/souffle.vim'
 Plug 'tpope/vim-surround'
