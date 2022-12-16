@@ -151,3 +151,5 @@ export PATH=$PATH:/home/vincent/flink-1.16.0/bin
 
 
 export PATH=$PATH:/home/vincent/bin
+
+source ~/.iterm2_shell_integration.zsh
