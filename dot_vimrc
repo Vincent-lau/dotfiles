@@ -56,6 +56,7 @@ let g:auto_save=1
 Plug 'fatih/vim-go'
 Plug 'souffle-lang/souffle.vim'
 Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -205,6 +206,8 @@ endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+set mouse=a
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -225,7 +228,7 @@ function! ChangeBackground()
       set background=light  " for the light version of the theme
     endif
   elseif has("unix")
-    if strftime("%H") < 19
+    if strftime("%H") < 19 && strftime("%H") > 7
       set background=light
     else
       set background=dark
@@ -235,12 +238,32 @@ endfunction
 
 call ChangeBackground()
 
+let mapleader = "\<Space>"
 nmap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 colorscheme PaperColor
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='papercolor'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnametruncate = 20
+let g:airline#extensions#tabline#fnamecollapse = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+
+
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 " Set extra options when running in GUI mode
 if has("gui_running")
