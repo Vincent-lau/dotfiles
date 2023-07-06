@@ -131,19 +131,20 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# k8s
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-alias k=kubectl
-complete -o default -F __start_kubectl k
 
 alias py3=python3
 
-. ~/.kerl/24.3/activate
+[[ ! -f ~/.kerl/25.2/activate ]] || . ~/.kerl/25.2/activate
 
 # >>>> Vagrant command completion (start)
 fpath=(/opt/vagrant/embedded/gems/2.3.2/gems/vagrant-2.3.2/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+
+# k8s
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+alias k=kubectl
+complete -o default -F __start_kubectl k
 
 # opam configuration
 [[ ! -r /home/vincent/.opam/opam-init/init.zsh ]] || source /home/vincent/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
@@ -154,15 +155,18 @@ export PATH=$PATH:/home/vincent/elixir/bin
 export PATH=$PATH:/home/vincent/flink-1.16.0/bin
 
 
-export PATH=$PATH:/home/vincent/bin
+export PATH=$PATH:~/bin/
 
-source ~/.iterm2_shell_integration.zsh
+[[ ! -r ~/.iterm2_shell_integration.zsh ]] || source ~/.iterm2_shell_integration.zsh
 alias google-java-format=java -jar /home/vincent/google-java-format-1.15.0-all-deps.jar
 
 
 export PATH=$PATH:/home/vincent/eflame
 export PATH=$PATH:/home/vincent/erlgrind/src
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if [[ -d .pyenv ]]
+then
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
