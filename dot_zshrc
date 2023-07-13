@@ -85,7 +85,7 @@ plugins=(
   colored-man-pages
   zsh-autosuggestions
   zsh-syntax-highlighting
-  vi-mode
+  zsh-vi-mode
   fzf
   ssh-agent
 )
